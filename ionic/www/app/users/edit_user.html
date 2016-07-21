@@ -1,0 +1,27 @@
+<ion-view title="Update Account" ng-controller="RegistrationCtrl">
+  <ion-content class="has-header has-subheader">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="updateAccountForm.email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Current Password</span>
+        <input type="password" ng-model="updateAccountForm.current_password">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">New Password</span>
+        <input type="password" ng-model="updateAccountForm.password">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">New Password Confirmation</span>
+        <input type="password" ng-model="updateAccountForm.password_confirmation">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="updateAccount(updateAccountForm)">
+        Update Account
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

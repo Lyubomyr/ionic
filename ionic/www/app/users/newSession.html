@@ -1,0 +1,23 @@
+<ion-view title="Sign-In" ng-controller="SessionCtrl">
+  <ion-content class="has-header has-subheader">
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="text" ng-model="user.email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="user.password">
+      </label>
+    </div>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="signIn(user)">
+        Sign-In
+      </button>
+      <p class="text-center">
+        <a href="#/forgot-password">Forgot password</a> <br/>
+        Have no account? <a ui-sref="app.sign_up">Sing Up</a>
+      </p>
+    </div>
+  </ion-content>
+</ion-view>
