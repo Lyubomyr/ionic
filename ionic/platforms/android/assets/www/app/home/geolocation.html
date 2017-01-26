@@ -1,0 +1,7 @@
+<ion-view ng-controller="GeolocationCtrl as vm">
+  <ion-content class="has-header">
+      <h3> You can see your geolocation </h3>
+      <button class="button button-stable" ng-click="findMe()"> Find Me </button>
+      <ui-gmap-google-map id="map" center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+  </ion-content>
+</ion-view>

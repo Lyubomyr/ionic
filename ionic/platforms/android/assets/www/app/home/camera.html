@@ -1,0 +1,7 @@
+<ion-view ng-controller="CameraCtrl as vm">
+  <ion-content class="has-header">
+      <h3> Use your camera </h3>
+      <img ng-src="{{srcImage || 'img/dummy.jpg'}}" id="srcImage" width="250 " height="250" style="display: block; margin: 0 auto;"/><br/>
+      <button class="button button-full button-positive " ng-click="takeImage() ">Take Image</button><br/>
+  </ion-content>
+</ion-view>

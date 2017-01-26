@@ -1,6 +1,6 @@
-angular.module('scheduleApp', ['ionic', 'ng-token-auth'])
+angular.module('scheduleApp', ['ionic', 'angular-cache', 'ng-token-auth', 'uiGmapgoogle-maps', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, CacheFactory) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -10,12 +10,19 @@ angular.module('scheduleApp', ['ionic', 'ng-token-auth'])
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    CacheFactory("leagueDataCache", { storageMode: "localStorage", maxAge: 100000, deleteOnExpire: "aggressive" });
+    CacheFactory("leaguesCache", { storageMode: "localStorage", maxAge: 100000, deleteOnExpire: "aggressive" });
+    CacheFactory("myTeamsCache", { storageMode: "localStorage" });
+    CacheFactory("staticCache", { storageMode: "localStorage" });
+
   });
 })
 
 .config(function($authProvider) {
   $authProvider.configure({
-      apiUrl: '/api'
+      apiUrl: 'http://localhost:3000/api',
+      storage: 'localStorage'
   });
 })
 
@@ -37,9 +44,40 @@ angular.module('scheduleApp', ['ionic', 'ng-token-auth'])
     }
   })
 
-  .state('sign_in', {
-    url: '/sign_in',
-    templateUrl: 'app/users/new.html',
+  .state('home.geolocation', {
+    url: '/geolocation',
+    views: {
+      "tab-geolocation": {
+        templateUrl: 'app/home/geolocation.html'
+      }
+    }
+  })
+
+  .state('home.camera', {
+    url: '/camera',
+    views: {
+      "tab-camera": {
+        templateUrl: 'app/home/camera.html'
+      }
+    }
+  })
+
+  // only authenticated users will be able to see routes that are children of this state
+  .state('admin', {
+    url: '/admin',
+    abstract: true,
+    template: '<ui-view/>',
+    resolve: {
+      auth: function($auth) {
+        return $auth.validateUser();
+      }
+    }
+  })
+
+  // this route will only be available to authenticated users
+  .state('admin.dashboard', {
+    url: '/dash',
+    templateUrl: 'app/admin/adminPage.html',
   })
 
   .state('home.myteams', {
@@ -55,6 +93,33 @@ angular.module('scheduleApp', ['ionic', 'ng-token-auth'])
     abstract: true,
     url: '/app',
     templateUrl: 'app/layout/menu.html',
+  })
+
+  .state('app.sign_in', {
+    url: '/sign_in',
+    views: {
+      "mainContent": {
+        templateUrl: 'app/users/newSession.html'
+      }
+    }
+  })
+
+  .state('app.sign_up', {
+    url: '/sign_up',
+    views: {
+      "mainContent": {
+        templateUrl: 'app/users/registration.html'
+      }
+    }
+  })
+
+  .state('app.edit_user', {
+    url: '/edit_user',
+    views: {
+      "mainContent": {
+        templateUrl: 'app/users/edit_user.html'
+      }
+    }
   })
 
   .state('app.teams', {

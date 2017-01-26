@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="lib/angular-cookie/angular-cookie.js"></script>
+    <script src="lib/angular-cache/dist/angular-cache.min.js"></script>
+    <script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
+    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="app/app.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <script src="app/admin/adminCtrl.js"></script>
+
+    <script src="app/users/sessionCtrl.js"></script>
+    <script src="app/users/registrationCtrl.js"></script>
+    <script src="app/home/leaguesCtrl.js"></script>
+    <script src="app/home/geolocationCtrl.js"></script>
+    <script src="app/home/cameraCtrl.js"></script>
+    <script src="app/teams/teamDetailCtrl.js"></script>
+    <script src="app/teams/teamsCtrl.js"></script>
+    <script src="app/locations/locationsCtrl.js"></script>
+    <script src="app/standings/standingsCtrl.js"></script>
+    <script src="app/game/gameCtrl.js"></script>
+
+    <script src="app/services/scheduleApi.js"></script>
+  </head>
+
+  <body ng-app="scheduleApp" class="platform-android platform-cordova platform-webview">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>
